@@ -15,8 +15,4 @@ export default class Person {
     this.url = reqData.url
   }
 
-  // get filmsData() {
-
-  // }
-
 }

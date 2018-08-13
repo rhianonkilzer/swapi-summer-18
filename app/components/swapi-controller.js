@@ -26,10 +26,21 @@ function drawStarships(data) {
 
 }
 
-function drawError(error) {
-  console.log(error)
-  document.getElementById('error').innerHTML = error.message
+function drawPlanets(data) {
+  let planetsElem= document.getElementById('planets')
+  let template = ''
+  data.results.forEach(planet=> {
+    template += `<div>
+    ${planet.name}
+    </div>`
+  })
+  planetsElem.innerHTML = template
 }
+
+// function drawError(error) {
+//   console.log(error)
+//   document.getElementById('error').innerHTML = error.message
+// }
 
 
 export default class SwapiController {
@@ -39,8 +50,10 @@ export default class SwapiController {
 
   getStarships() {
     console.log("HELLO FROM CONTROLLER")
-    swapiService.getStarships(console.log, drawError)
+    swapiService.getStarships(console.log)
   }
 
-
+getPlanets() {
+  swapiService.getPlanets(console.log)
+}
 }
