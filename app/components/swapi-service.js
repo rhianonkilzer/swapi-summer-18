@@ -1,5 +1,6 @@
 import Person from "../models/Person.js";
 import Planet from "../models/Planet.js";
+import Starship from "../models/Starship.js";
 
 
 export default class SwapiService {
@@ -24,17 +25,36 @@ export default class SwapiService {
   }
 
 
+
   getStarships(draw) {
     console.log("HELLO FROM SWAPISERVICE")
     fetch('https://swapi.co/api/starships')
       .then(res => res.json())
-      .then(draw)
-      .catch(err=>{
-      console.log(err)
+      .then(res => {
+        let myStarship = res.results.map(rawStarship => {
+          return new Starship(rawStarship)
+        })
+        draw(myStarship)
+      })
+      .catch(err =>{
+
       })
 
     console.log("HERE I AM")
   }
+
+
+  // // getStarships(draw) {
+  //   console.log("HELLO FROM SWAPISERVICE")
+  //   fetch('https://swapi.co/api/starships')
+  //     .then(res => res.json())
+  //     .then(draw)
+  //     .catch(err=>{
+  //     console.log(err)
+  //     })
+
+  //   console.log("HERE I AM")
+  // }
 
   
   
